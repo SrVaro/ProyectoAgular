@@ -1,20 +1,25 @@
 <div class="contenedorPrincipal">
   <div class="container" >
-  <form>
+  <form [formGroup]="registerForm">
+    <h3> Registro </h3>
     <div class="form-group">
-      <label for="exampleInputEmail1">Correo electronico</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Introduce tu correo electronico">
+      <label for="email">Correo electronico</label>
+      <input type="email" formControlName="email" class="form-control" aria-describedby="emailHelp" placeholder="Introduce tu correo electronico" required >
       <small id="emailHelp" class="form-text text-muted">No compartiremos tu correo con nadie mas.</small>
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword1">Contraseña</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+      <label for="password1">Contraseña</label>
+      <input type="password" class="form-control" formControlName="password" placeholder="Contraseña" required>
+      <label class="error">{{errorMessage}}</label>
+      <label class="success">{{successMessage}}</label>
     </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Repite tu contraseña</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
-    </div>
-    <button type="submit" class="btn btn-primary">Registrar</button>
+    <button type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-primary">Registrar</button>
+    <br>
+    <button type="button" class="btn btn-danger" (click)="tryGoogleLogin()">Registrarse con Google</button>
+
+        
+    <p> ¿Ya tienes una cuenta? <a href="/login">Login</a></p>
   </form>
   </div>
+ 
 </div>

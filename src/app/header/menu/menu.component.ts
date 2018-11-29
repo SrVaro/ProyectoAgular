@@ -1,4 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { ServicioMenuService } from 'src/app/servicios/servicio-menu.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,13 +8,20 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  menuAbierto : boolean = false;
+  @HostBinding('class.is-open')
 
-  constructor() {
+  menuAbierto : boolean = true;
+
+  constructor(
+    private menuService: ServicioMenuService
+  ) {
 
    }
 
-  ngOnInit() {
+   ngOnInit() {
+    this.menuService.change.subscribe(menuAbierto => {
+      this.menuAbierto = menuAbierto;
+    });
   }
 
   toggle() {

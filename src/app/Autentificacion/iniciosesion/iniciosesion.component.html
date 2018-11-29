@@ -1,3 +1,23 @@
-<p>
-  iniciosesion works!
-</p>
+<div class="contenedorPrincipal">
+    <div class="container" >
+    <form [formGroup]="loginForm">
+      <h3> Inicio sesion </h3>
+      <div class="form-group">
+        <label for="email">Correo electronico</label>
+        <input type="email" formControlName="email" class="form-control" aria-describedby="emailHelp" placeholder="Introduce tu correo electronico" required >
+      </div>
+      <div class="form-group">
+        <label for="password1">Contraseña</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="Contraseña" required>
+        <label class="error">{{errorMessage}}</label>
+        <label class="success">{{successMessage}}</label>
+      </div>
+      <button type="submit" (click)="tryLogin(loginForm.value)" class="btn btn-primary">Iniciar sesion</button>
+      <br>
+      <button type="button" class="btn btn-danger btn-block" (click)="tryGoogleLogin()">Iniciar sesion con Google</button>  
+          
+      <p> ¿Ya tienes una cuenta? <a href="/login">Login</a></p>
+    </form>
+    </div>
+   
+  </div>

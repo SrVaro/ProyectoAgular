@@ -1,0 +1,15 @@
+div.card{
+    text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    color: white;
+    background: #343A40;
+    height: 400px;
+}
+
+.contenedor{
+    background: black;
+    width: 100%;
+    min-height:100vh;
+}
