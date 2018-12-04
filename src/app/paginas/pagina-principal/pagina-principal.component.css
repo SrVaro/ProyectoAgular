@@ -3,13 +3,14 @@ div.card{
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
-    color: white;
-    background: #343A40;
     height: 400px;
 }
 
-.contenedor{
-    background: black;
+.imagen{
+    height: 225px;
+}
+
+
+.informacionAdicional{
     width: 100%;
-    min-height:100vh;
 }

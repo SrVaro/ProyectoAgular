@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h3> Creacion de un nuevo personaje </h3>
+</div>
+<div class="modal-body">
+    <form (ngSubmit)="newPJ(newPJForm.value)" [formGroup]="newPJForm">
+        <input type="hidden" formControlName="id">
+        
+        <label for="nombre">Nombre</label>
+        <input type="text" formControlName="nombre">
+        <br>
+        
+        <label for="url_img">Imagen</label>
+        <input type="url" formControlName="url">
+        <br>
+        
+        <input type="submit" class="btn--blue btn--add" [disabled]="!newPJForm.valid" value="Agregar">
+    </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" (click)="tryLogin(loginForm.value)" class="btn btn-primary ">Crear personaje</button> 
+  <button type="button" class="btn btn-danger " (click)="bsModalRef.hide()">Cancelar</button>
+</div>
