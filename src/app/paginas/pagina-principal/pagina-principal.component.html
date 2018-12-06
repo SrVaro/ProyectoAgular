@@ -1,13 +1,27 @@
+  <ng-sidebar-container style="height: 100vh;">
 
-  <div class="row" >
-    <div class="col-sm-3"*ngFor="let pj of pjs">
-      <div class="card text-white bg-dark mb-3">
-        <div class="card-body">
-          <h5 class="card-title">{{pj.data.nombre}}</h5>
-          <img class="imagen" [src]="pj.data.url" alt="Imagen no valida">
-          <button type="button" class="btn btn-outline-light">Mas informacion...</button>
+    <!-- A sidebar -->
+    <ng-sidebar  [(opened)]="_opened" position="right">
+      <ul>
+        <li>Menu Item</li>
+        <li>Menu Item</li>
+        <li>Menu Item</li>
+      </ul>
+    </ng-sidebar>
+  
+    <!-- Page content -->
+    <div ng-sidebar-content>
+      <div class="row" >
+        <div class="col-sm-3"*ngFor="let pj of pjs">
+          <div class="card text-white bg-dark mb-3">
+            <div class="card-body">
+              <h5 class="card-title">{{pj.data.nombre}}</h5>
+              <img class="imagen" [src]="pj.data.url" alt="Imagen no valida">
+              <button type="button" (click)="_toggleSidebar()" class="btn btn-outline-light">Mas informacion...</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    
-  </div>
+  
+  </ng-sidebar-container>

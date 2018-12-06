@@ -12,6 +12,10 @@ export class PaginaPrincipalComponent implements OnInit {
 
   public pjs = [];
 
+  private _opened: boolean = false;
+
+  private flipped: boolean = false;
+
   constructor(
     private servicioMenu: ServicioMenuService,
     private db: ServicioFirebaseService
@@ -28,6 +32,15 @@ export class PaginaPrincipalComponent implements OnInit {
         });
       })
     });
+  }
+
+  private flip(){
+    this.flipped = !this.flipped;
+  }
+
+
+  private _toggleSidebar() {
+    this._opened = !this._opened;
   }
 
 

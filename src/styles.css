@@ -1,3 +1,14 @@
 body{
     background: black;
 }
+
+.ng-sidebar {
+    background: #343A40;
+    width: 13rem;
+}
+
+.ng-sidebar--right {
+    color: white !important;
+    background: #343A40;
+    width: 40%;
+}

@@ -17,6 +17,8 @@ import { PersonajeComponent } from './paginas/personaje/personaje.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { NuevoPersonajeComponent } from './paginas/nuevo-personaje/nuevo-personaje.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { SidebarModule } from 'ng-sidebar';
+import { FlipModule } from 'ngx-flip';
 
 const appRoutes: Routes = [
   { path: '', component: PaginaPrincipalComponent, pathMatch: 'full', canActivate: [AuthGuard] },
@@ -41,12 +43,14 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     ModalModule.forRoot(),
+    SidebarModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     FormsModule,
     ReactiveFormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FlipModule
   ],
   providers: [ServicioAutentificacionService],
   bootstrap: [AppComponent],

@@ -17,7 +17,9 @@ export class NuevoPersonajeComponent implements OnInit {
   public newPJForm = new FormGroup({
     nombre: new FormControl('', Validators.required),
     url: new FormControl('', Validators.required),
-    id: new FormControl('')
+    id: new FormControl(''),
+    descripcion: new FormControl(''),
+    saga: new FormControl('')
   });
 
   creacionForm: FormGroup;
@@ -31,7 +33,9 @@ export class NuevoPersonajeComponent implements OnInit {
     this.newPJForm.setValue({
       id: '',
       nombre: '',
-      url: ''
+      url: '',
+      descripcion: '',
+      saga: ''
     });
   }
 
@@ -44,14 +48,19 @@ export class NuevoPersonajeComponent implements OnInit {
     if (this.currentStatus == 1) {
       let data = {
         nombre: form.nombre,
-        url: form.url
+        url: form.url,
+        descripcion: form.descripcion,
+        saga: form.saga
       }
       this.servicioFirestore.createPJ(data).then(() => {
         console.log('Documento creado exitósamente!');
+        this.bsModalRef.hide();
         this.newPJForm.setValue({
           nombre: '',
           url: '',
-          id: ''
+          id: '',
+          descripcion: '',
+          saga: ''
         });
       }, (error) => {
         console.error(error);
