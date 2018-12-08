@@ -29,5 +29,10 @@ export class ServicioFirebaseService {
     return this.db.collection('pjs').doc(documentId).set(data);
   }
 
+  //Borra un gato
+  public deletePJ(documentId: string) {
+    return this.db.collection('pjs').doc(documentId).delete();
+}
+
 }
 

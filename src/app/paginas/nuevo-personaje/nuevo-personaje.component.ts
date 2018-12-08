@@ -15,11 +15,17 @@ export class NuevoPersonajeComponent implements OnInit {
   public currentStatus = 1; 
 
   public newPJForm = new FormGroup({
-    nombre: new FormControl('', Validators.required),
+    nombre: new FormControl('' ,Validators.required),
     url: new FormControl('', Validators.required),
     id: new FormControl(''),
     descripcion: new FormControl(''),
-    saga: new FormControl('')
+    saga: new FormControl(''),
+    cita: new FormControl(''),
+    arriba: new FormControl('' ,Validators.required),
+    abajo: new FormControl('',Validators.required),
+    lateral: new FormControl('',Validators.required),
+    normal: new FormControl('',Validators.required),
+    smash: new FormControl('',Validators.required),
   });
 
   creacionForm: FormGroup;
@@ -35,7 +41,13 @@ export class NuevoPersonajeComponent implements OnInit {
       nombre: '',
       url: '',
       descripcion: '',
-      saga: ''
+      saga: '',
+      cita: '',
+      arriba: '',
+      abajo: '',
+      lateral: '',
+      normal: '',
+      smash: ''
     });
   }
 
@@ -50,7 +62,15 @@ export class NuevoPersonajeComponent implements OnInit {
         nombre: form.nombre,
         url: form.url,
         descripcion: form.descripcion,
-        saga: form.saga
+        saga: form.saga,
+        cita: form.cita,
+        arriba: form.arriba,
+        abajo: form.abajo,
+        lateral: form.lateral,
+        normal: form.normal,
+        smash: form.smash
+        
+        
       }
       this.servicioFirestore.createPJ(data).then(() => {
         console.log('Documento creado exitósamente!');
@@ -60,7 +80,13 @@ export class NuevoPersonajeComponent implements OnInit {
           url: '',
           id: '',
           descripcion: '',
-          saga: ''
+          saga: '',
+          cita: '',
+          arriba: '',
+          abajo: '',
+          lateral: '',
+          normal: '',
+          smash: ''
         });
       }, (error) => {
         console.error(error);
@@ -83,5 +109,6 @@ export class NuevoPersonajeComponent implements OnInit {
       });
     }
   }
+
 
 }
