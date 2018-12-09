@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServicioAutentificacionService } from 'src/app/servicios/servicio-autentificacion.service';
-import { ServicioMenuService } from 'src/app/servicios/servicio-menu.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -26,7 +25,6 @@ export class IniciosesionComponent implements OnInit {
     public authService: ServicioAutentificacionService,
     private router: Router,
     private fb: FormBuilder,
-    private servicioMenu: ServicioMenuService,
     private servicioSpinner: NgxSpinnerService
   ) { 
     this.createFormInicioSesion();
@@ -35,7 +33,6 @@ export class IniciosesionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.servicioMenu.cerrarMenu();
   }
 
   spinner(): void{

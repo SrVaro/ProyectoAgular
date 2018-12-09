@@ -67,7 +67,6 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark barra">
 
         <a class="navbar-brand" routerLink="/user" *ngIf="logged" >Smash Bros Character Creator</a>
-        <a class="navbar-brand" routerLink="/user" *ngIf="!logged" > No tienes permitido acceder a esta pagina</a>
         
         <div  class="crearPersonaje"> 
         <button type="button" class="btn btn-primary" (click)="openModalWithComponent()" *ngIf="logged" [disabled]="editando">Crear un personaje</button>
@@ -76,7 +75,6 @@
         
         <div>
             <a class="btn btn-primary cerrarSesion" (click)="logout()" *ngIf="logged" routerLink="/login"> Cerrar Sesion </a>
-            <a class="btn btn-primary cerrarSesion" *ngIf="!logged" routerLink="/login"> Iniciar sesion</a>
         </div>
         
         </nav>

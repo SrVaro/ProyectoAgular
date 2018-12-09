@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicioMenuService } from 'src/app/servicios/servicio-menu.service';
 import { ServicioFirebaseService } from 'src/app/servicios/servicio-firebase.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { NuevoPersonajeComponent } from '../nuevo-personaje/nuevo-personaje.component';

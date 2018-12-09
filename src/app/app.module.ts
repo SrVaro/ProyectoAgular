@@ -4,8 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { IniciosesionComponent } from './Autentificacion/iniciosesion/iniciosesion.component';
-import { RegistroComponent } from './Autentificacion/registro/registro.component';
-import { MenuComponent } from './header/menu/menu.component';
 import { PaginaPrincipalComponent } from './paginas/pagina-principal/pagina-principal.component';
 import { ServicioAutentificacionService } from './servicios/servicio-autentificacion.service';
 import { AngularFireModule } from '@angular/fire';
@@ -13,7 +11,6 @@ import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthGuard } from './auth.guard';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { PersonajeComponent } from './paginas/personaje/personaje.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { NuevoPersonajeComponent } from './paginas/nuevo-personaje/nuevo-personaje.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -30,11 +27,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
-    RegistroComponent,
     IniciosesionComponent,
     PaginaPrincipalComponent,
-    PersonajeComponent,
     NuevoPersonajeComponent
     
   ],
