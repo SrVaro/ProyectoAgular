@@ -26,7 +26,7 @@ export class PaginaPrincipalComponent implements OnInit {
 
   public pjs = [];
 
-  private _opened: boolean = false;
+  public _opened: boolean = false;
 
   public editPJForm = new FormGroup({
     nombre: new FormControl('' ,Validators.required),
@@ -185,7 +185,7 @@ export class PaginaPrincipalComponent implements OnInit {
 
   
 
-  private _toggleSidebar() {
+  public _toggleSidebar() {
     this._opened = !this._opened;
     this.switchEditar();
   }
