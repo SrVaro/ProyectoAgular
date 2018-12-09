@@ -13,6 +13,8 @@ export class ServicioAutentificacionService {
     public afAuth: AngularFireAuth
     ) { }
 
+  isLogged: boolean = false;
+
   doGoogleLogin(){
     return new Promise<any>((resolve, reject) => {
       let provider = new firebase.auth.GoogleAuthProvider();

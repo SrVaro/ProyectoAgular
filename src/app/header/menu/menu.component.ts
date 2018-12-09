@@ -24,6 +24,7 @@ export class MenuComponent implements OnInit {
     private authFirebase : ServicioAutentificacionService,
     private menuService: ServicioMenuService,
     private modalService: BsModalService
+    
   ) {
     this.isLogged();
    }
@@ -32,18 +33,11 @@ export class MenuComponent implements OnInit {
     this.menuService.change.subscribe(menuAbierto => {
       this.menuAbierto = menuAbierto;
     });
+
   }
 
   openModalWithComponent() {
-    const initialState = {
-      list: [
-        'Open a modal with component',
-        'Pass your data',
-        'Do something else',
-        '...'
-      ],
-      title: 'Modal with component'
-    };
+    const initialState = {};
     this.bsModalRef = this.modalService.show(NuevoPersonajeComponent, {initialState});
     this.bsModalRef.content.closeBtnName = 'Close';
   }

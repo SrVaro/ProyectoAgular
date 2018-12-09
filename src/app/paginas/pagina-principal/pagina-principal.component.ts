@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicioMenuService } from 'src/app/servicios/servicio-menu.service';
 import { ServicioFirebaseService } from 'src/app/servicios/servicio-firebase.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal/public_api';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { NuevoPersonajeComponent } from '../nuevo-personaje/nuevo-personaje.component';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ServicioAutentificacionService } from 'src/app/servicios/servicio-autentificacion.service';
 
 
 @Component({
@@ -13,10 +15,15 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class PaginaPrincipalComponent implements OnInit {
 
+  bsModalRef: BsModalRef;
+
+  logged : boolean = false;
 
   public documentId = null;
 
   public currentStatus = 2; 
+
+  editando: boolean = false;
 
   public pjs = [];
 
@@ -40,10 +47,13 @@ export class PaginaPrincipalComponent implements OnInit {
 
 
   constructor(
-    private servicioMenu: ServicioMenuService,
+    private servicioSpinner : NgxSpinnerService,
     private db: ServicioFirebaseService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authFirebase : ServicioAutentificacionService,
+    private modalService: BsModalService
   ) { 
+    this.isLogged();
     this.editPJForm.setValue({
       id: '',
       nombre: '',
@@ -59,7 +69,77 @@ export class PaginaPrincipalComponent implements OnInit {
     });
   }
 
-  public editPJ(documentId) {
+  openModalWithComponent() {
+    const initialState = {};
+    this.bsModalRef = this.modalService.show(NuevoPersonajeComponent, {initialState});
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
+
+  isLogged() {
+    this.authFirebase.isAuth().subscribe(auth => {
+      if (auth) {
+        console.log('user logged');
+        this.logged = true;
+      } else {
+        console.log('NOT user logged');
+        this.logged = false;
+      }
+    });
+  }
+
+  logout(){
+    this.authFirebase.logout();
+  }
+
+  public editPJ(form, documentId = this.documentId) {
+      let data = {
+        nombre: form.nombre,
+          url: form.url,
+          descripcion: form.descripcion,
+          saga: form.saga,
+          cita: form.cita,
+          arriba: form.arriba,
+          abajo: form.abajo,
+          lateral: form.lateral,
+          normal: form.normal,
+          smash: form.smash
+
+      }
+      this.db.updatePJ(documentId, data).then(() => {
+        this.currentStatus = 1;
+        this.editPJForm.setValue({
+          nombre: '',
+          url: '',
+          id: '',
+          descripcion: '',
+          saga: '',
+          cita: '',
+          arriba: '',
+          abajo: '',
+          lateral: '',
+          normal: '',
+          smash: ''
+        });
+        console.log('Documento editado exitósamente');
+        this._toggleSidebar();
+      }, (error) => {
+        console.log(error);
+      });
+    }
+
+    switchEditar(){
+      this.editando = !this.editando;
+    }
+  
+
+  spinner(): void{
+    this.servicioSpinner.show();
+    setTimeout(() => {
+        this.servicioSpinner.hide();
+    }, 2000)
+  }
+
+  public rellenarFormulario(documentId) {
     this._toggleSidebar();
     let editSubscribe = this.db.getPJ(documentId).subscribe((pj:any) => {
       this.currentStatus = 2;
@@ -83,7 +163,7 @@ export class PaginaPrincipalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.servicioMenu.abrirMenu();
+    this.spinner();
     this.db.getPJs().subscribe((pjsSnapshot) => {
       this.pjs = [];
       pjsSnapshot.forEach((pjData: any) => {
@@ -108,6 +188,7 @@ export class PaginaPrincipalComponent implements OnInit {
 
   private _toggleSidebar() {
     this._opened = !this._opened;
+    this.switchEditar();
   }
 
 

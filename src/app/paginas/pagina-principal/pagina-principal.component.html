@@ -1,11 +1,12 @@
   <ng-sidebar-container style="height: 100vh;">
 
     <!-- A sidebar -->
-    <ng-sidebar  [(opened)]="_opened" position="right">
-        <form (ngSubmit)="editPJ(editPJForm.value)" [formGroup]="editPJForm">
+    <ng-sidebar  [(opened)]="_opened" position="right" >
+        <form (ngSubmit)="editPJ(editPJForm.value)" [formGroup]="editPJForm" class="barraLateral">
             <div class="form-row">
                 
-                    <input type="hidden" formControlName="id">
+                <input type="hidden" formControlName="id">
+
                 <div class="form-group col-md-6">
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" placeholder="Nombre del personaje" formControlName="nombre">
@@ -53,6 +54,7 @@
     
                 <div class="form-group col-md-6">
                         <input type="submit"  class="btn btn-primary" [disabled]="!editPJForm.valid" value="Aceptar">
+                        <input type="reset" (click)="_toggleSidebar()"  class="btn btn-danger" value="Cancelar">
                 </div>
                 
             </div>
@@ -60,11 +62,29 @@
     </ng-sidebar>
   
     <!-- Page content -->
-    <div ng-sidebar-content>
+    <div ng-sidebar-content  style="overflow:hidden">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark barra">
+
+        <a class="navbar-brand" routerLink="/user" *ngIf="logged" >Smash Bros Character Creator</a>
+        <a class="navbar-brand" routerLink="/user" *ngIf="!logged" > No tienes permitido acceder a esta pagina</a>
+        
+        <div  class="crearPersonaje"> 
+        <button type="button" class="btn btn-primary" (click)="openModalWithComponent()" *ngIf="logged" [disabled]="editando">Crear un personaje</button>
+        </div>
+        
+        
+        <div>
+            <a class="btn btn-primary cerrarSesion" (click)="logout()" *ngIf="logged" routerLink="/login"> Cerrar Sesion </a>
+            <a class="btn btn-primary cerrarSesion" *ngIf="!logged" routerLink="/login"> Iniciar sesion</a>
+        </div>
+        
+        </nav>
+
       <div class="row" >
-      <div class="col-sm-3"*ngFor="let pj of pjs">
-        <div class="card-container">
-         <div class="card">
+      <div class="col-sm-3"*ngFor="let pj of pjs" >
+        <div class="card-container" >
+         <div class="card" >
              <div class="front">
                  <div class="cover">
                      <img src="../../../assets/theme.jpg"/>
@@ -101,9 +121,10 @@
                          <h4 class="text-center">Smash Final</h4>
                               <p class="text-center"> <img src="../../../assets/flecha.jpg" class="flecha"> {{pj.data.smash}}</p>
 
-                        <button class ="btnEliminar" type="button" (click)="deletePJ(pj.id)" class="btn btn-danger">Eliminar</button>
-                        <button type="button" (click)="editPJ(pj.id)" class="btn btn-success">Editar</button>
-                    
+                        <div class="acciones">
+                            <button class ="btnEliminar" type="button" (click)="deletePJ(pj.id)" class="btn btn-danger">Eliminar</button>
+                            <button type="button" (click)="rellenarFormulario(pj.id)" class="btn btn-success">Editar</button>
+                        </div>
                     </div>
 
                     

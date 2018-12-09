@@ -2,12 +2,26 @@ img.flecha{
   height: 20px;
 }
 
-.imagen{
-    height: 225px;
+div.crearPersonaje{
+  margin: auto;
 }
 
-*{
-  list-style: none;
+nav.barra{
+  border-bottom: solid 2px #fff;
+  border-radius: 3px;
+  
+}
+
+div.acciones{
+  margin:auto;
+  text-align: center;
+  width: 100%;
+  margin-top: 35px;
+}
+
+.barraLateral{
+  border-left: solid 3px #fff;
+  padding: 20px;
 }
 
 /* entire container, keeps perspective */
@@ -59,6 +73,7 @@ img.flecha{
   left: 0;
   background-color: #FFF;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.14);
+  
 }
 
 /* front pane, placed above back */
@@ -87,11 +102,12 @@ img.flecha{
   background: none repeat scroll 0 0 #343A40;
   border-radius: 4px;
   color: #444444;
-   margin-top: 50px;
-  margin-left: 50px;
+  margin-top: 30px;
+  margin-left: 10px;
+
 }
 .card-container, .front, .back {
-  width: 100%;
+  width: 99%;
   height: 420px;
   border-radius: 4px;
 }
@@ -299,5 +315,6 @@ color: #2C93FF;
 }
 
 button{
-  margin-right: 10px;
+  margin-right: 20px;
+  margin-left: 20px;
 }

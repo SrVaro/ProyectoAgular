@@ -23,7 +23,6 @@ import { FlipModule } from 'ngx-flip';
 const appRoutes: Routes = [
   { path: '', component: PaginaPrincipalComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'login', component: IniciosesionComponent },
-  { path: 'register', component: RegistroComponent },
   { path: 'user', component: PaginaPrincipalComponent, canActivate: [AuthGuard]}
 
 ];

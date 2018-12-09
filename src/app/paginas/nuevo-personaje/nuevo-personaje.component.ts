@@ -91,23 +91,7 @@ export class NuevoPersonajeComponent implements OnInit {
       }, (error) => {
         console.error(error);
       });
-    } else {
-      let data = {
-        nombre: form.nombre,
-        url: form.url
-      }
-      this.servicioFirestore.updatePJ(documentId, data).then(() => {
-        this.currentStatus = 1;
-        this.newPJForm.setValue({
-          nombre: '',
-          url: '',
-          id: ''
-        });
-        console.log('Documento editado exitósamente');
-      }, (error) => {
-        console.log(error);
-      });
-    }
+    } 
   }
 
 

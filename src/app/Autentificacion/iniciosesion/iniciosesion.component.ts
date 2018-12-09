@@ -13,7 +13,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class IniciosesionComponent implements OnInit {
 
   loginForm: FormGroup;
+
+  registerForm: FormGroup;
+
   errorMessage: string = '';
+
+  successMessage: string;
 
   inicioAbierto: boolean = true;
 
@@ -24,7 +29,9 @@ export class IniciosesionComponent implements OnInit {
     private servicioMenu: ServicioMenuService,
     private servicioSpinner: NgxSpinnerService
   ) { 
-    this.createForm();
+    this.createFormInicioSesion();
+    this.createFormRegistro();
+    this.logout();
   }
 
   ngOnInit() {
@@ -42,7 +49,7 @@ export class IniciosesionComponent implements OnInit {
     this.inicioAbierto = !this.inicioAbierto;
   }
 
-  createForm() {
+  createFormInicioSesion() {
     this.loginForm = this.fb.group({
       email: ['', Validators.required ],
       password: ['',Validators.required]
@@ -67,6 +74,33 @@ export class IniciosesionComponent implements OnInit {
       console.log(err);
       this.errorMessage = err.message;
     })
+  }
+
+  createFormRegistro() {
+    this.registerForm = this.fb.group({
+      email: ['', Validators.required ],
+      password: ['',Validators.required]
+    });
+  }
+
+  tryRegister(value){
+    this.authService.doRegister(value)
+    .then(res => {
+      this.spinner();
+      console.log(res);
+      this.errorMessage = "";
+      this.successMessage = "Your account has been created";
+      this.inicioAbierto = true;
+    }, err => {
+      console.log(err);
+      this.errorMessage = err.message;
+      this.successMessage = "";
+    })
+    
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
 }
